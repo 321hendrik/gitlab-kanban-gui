@@ -1,0 +1,57 @@
+<div ng-controller="ProjectController">
+  <md-subheader>
+    <div class="kanban-grid-list page-margin" layout="row">
+      <md-list ng-repeat="column in columns" md-rowspan="1" md-colspan="2" md-colspan-sm="1" class="gray" layout="row" layout-padding layout-align="space-around center" style="border-bottom: solid {{column.color}};color: {{column.color}};">
+        <p class="md-subhead column-title" dnd-nodrag>{{column.name}}</p>
+        <p ng-if="column.emoticonUrl" dnd-nodrag><img class="emoticon-image" ng-src="{{column.emoticonUrl}}"></p>
+      </md-list>
+    </div>
+  </md-subheader>
+
+  <div class="page-margin">
+    <div layout="row" layout-align="center start" ng-hide="isLoadingDone">
+      <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div class="projects-container">
+      <div ng-repeat="project in projects | filter:searchText | orderBy:'name'" class="{{project-top-spacing}}" ng-click="select(project)">
+        <div class="status-bar-margin-inner">
+          <div layout="row" layout-align="space-between end">
+            <a href ui-sref='issues({projectid: project.id})' class="no-link-style">
+            <div layout="row" layout-align="start end">
+              <img ng-if="project.avatar_url" class="project-icon" ng-src="{{project.avatar_url}}" alt="{{project.name_with_namespace}}">
+              <p class="md-subhead project-title">{{project.name}}</p>
+            </div>
+            </a>
+            <div>
+              <a class="no-link-style" ng-href="{{project.web_url}}/issues" target="about;blank">
+                <md-button class="md-primary header-button" aria-label="show project in gitlab">Open in Gitlab</md-button>
+              </a>
+              <a href="{{tardisUrl}}/#/timesheet/{{project.id}}" target="about;blank" ng-show="tardisUrl"><md-button>Open Timesheet</md-button></a>
+            </div>
+          </div>
+
+          <a href ui-sref='issues({projectid: project.id})' class="no-link-style">
+            <div layout="row" layout-align="start start" layout-fill>
+              <div ng-repeat="(columnKey, columnValue) in project.overallStats" flex-order="{{getColumnOrder(columnKey)}}" ng-if="columnKey != 'count'" class="status-bar-mini" style="min-width: {{getBarWidth(columnValue, project.overallStats.count)}}%;background: {{getColumnColor(columnKey)}}" ng-show="getBarWidth(columnValue, project.overallStats.count)" >
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <a href ui-sref='issues({projectid: project.id})' class="no-link-style">
+          <div class="kanban-grid-list nodrag" layout="row">
+            <md-list ng-repeat="(columnKey, column) in columns" md-rowspan="3" md-colspan="2" md-colspan-sm="1" class="gray">
+              <md-list-item ng-repeat="(milestoneTitle, milestoneData) in project.stats" ng-hide="milestoneTitle == 'without_milestone'">
+                  <span class="cell" ng-repeat="(issueColumn, issueCount) in milestoneData" ng-if="issueColumn != 'count' && issueColumn == columnKey">
+                    {{milestoneTitle}} ({{issueCount}})
+                  </span>
+              </md-list-item>
+            </md-list>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

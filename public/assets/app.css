@@ -1,0 +1,379 @@
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size:14px;
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Toolbar area */
+
+.menu {
+  background-color: transparent;
+  border: none;
+}
+
+md-toolbar h1 {
+  margin: auto;
+}
+
+/* Sidenav area */
+
+md-list .md-button {
+  color: inherit;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+md-list .md-button.selected {
+  color: #03a9f4;
+}
+
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
+
+
+/* Primary content area */
+
+#content {
+  overflow: scroll;
+}
+
+#content .md-button.share {
+  background-color: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  margin: 8px auto 16px 0;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+
+#content md-icon.avatar {
+  margin-top: 10px;
+}
+
+#content .md-button.share > md-icon {
+  fill:black;
+  width:36px;
+  height:36px;
+}
+
+md-button.menuBtn > md-icon {
+  fill:white;
+  width:24px;
+  height:24px;
+}
+
+#content .md-button.share:active > md-icon {
+  background-color: #dadada;
+  border-radius: 75%;
+  padding:4px;
+  transition: all 100ms ease-out 30ms;
+}
+
+#content img {
+  display: block;
+  height: auto;
+  max-width: 500px;
+}
+
+/* Utils */
+
+.content-wrapper {
+  position: relative;
+}
+
+/* Typography support coming in 0.8.0 */
+
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+}
+
+.menu-icon {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0.2em;
+  vertical-align: middle;
+  transform: translateZ(0);
+}
+
+
+md-bottom-sheet  md-icon {
+  margin-right:20px;
+}
+
+span.name {
+  font-weight: bold;
+  font-size:1.1em;
+  padding-left:5px;
+}
+
+.kanban-action {
+  width: 3em;
+}
+
+.page-margin {
+  margin: 0 1.2em;
+}
+
+.project-title {
+  font-weight: 500;
+  margin: 2em 0 0 0.5em;
+}
+
+.milestone-title {
+  font-weight: 500;
+  margin: 1em 0 0 0.5em;
+}
+
+.kanban-grid-list md-list-item.md-no-proxy, md-list-item .md-no-style {
+  padding: 0;
+}
+
+.kanban-grid-list .cell {
+  border-bottom: solid #C2C2C2 1px;
+  text-align: left;
+  width: 100%;
+  display: inline-block;
+  padding: 1em;
+}
+.kanban-grid-list md-list {
+  padding: 0 0 8px 0;
+  margin: 0.2em;
+  width: 100%;
+  text-align: center;
+}
+.min-height-200 {
+  min-height: 200px;
+}
+.kanban-grid-list.nodrag md-list {
+  padding-bottom: 0;
+}
+.kanban-grid-list .gray {
+  background: #f5f5f5;
+}
+.kanban-grid-list .dark-gray {
+  background: #E2E2E2;
+}
+.kanban-grid-list .green {
+  background: #b9f6ca;
+}
+.kanban-grid-list .blue {
+  background: #84ffff;
+}
+.kanban-grid-list md-list[dnd-list] .dndPlaceholder {
+  display: block;
+  border: #888 dotted 2px;
+  min-height: 42px;
+}
+.kanban-grid-list md-list[dnd-list] .dndDraggingSource {
+  display: none;
+}
+.kanban-grid-list md-list[dnd-list] .dndDragging {
+  padding: 0;
+  background: #ddd;
+  text-align: left;
+  width: 100%;
+}
+
+md-list[dnd-list], md-list[dnd-list] > md-list-item {
+  overflow: auto;
+  position: relative;
+}
+
+.lock-size {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.kanban-icon {
+  margin: 0.2em;
+}
+
+.searchbar, .searchbar > input {
+  color: #fff !important;
+  border: 0;
+}
+
+.searchbar-container {
+  margin-right: 20px;
+  height: 2em;
+  width: 15em;
+  background: rgba(255,255,255,0.2);
+}
+
+.project-icon {
+  padding-bottom: 0.1em;
+  height: 3em !important;
+  width: 3em  !important;
+}
+
+.project-icon-text {
+  text-align: center;
+  font-size: 2.5em;
+  display: inline-block;
+  background: #ddd;
+  width: 1.6em;
+  border-radius: 1.5em;
+  margin-bottom: 0.2em;
+}
+
+.big {
+  max-width: 4em;
+  height: 4em;
+}
+
+.markdown-preview {
+  max-height: 200px;
+  overflow: scroll;
+  border-bottom: 1px solid #ddd;
+  padding: 0 1em;
+}
+
+a.no-link-style {
+  color: inherit;
+  text-decoration: none;
+}
+
+a {
+  color: #59B261;
+}
+
+.projectlist .image-card {
+  height: 100% !important;
+}
+.projectlist .project-item {
+  background: #EEEEEE;
+}
+.projectlist md-grid-list {
+  margin: 8px;
+}
+
+.site-logo {
+  margin-left: 20px;
+}
+
+.site-logo-img {
+  margin-left: 20px;
+  width: 2em;
+  height: 2em;
+}
+
+.avatar-img {
+  margin-left: -0.5em;
+  margin-right: 0.5em;
+  width: 2em;
+  height: 2em;
+}
+
+.small-label {
+  padding: 3px;
+  margin: 0 3px 0 0;
+  border-radius: 6px;
+  line-height: 1.8em;
+  font-size: 0.8em;
+  background: rgba(68, 68, 68, 0.16);
+  color: #000;
+}
+
+.status-bar {
+  color: #fff;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.status-bar-mini {
+  color: #fff;
+  height: 0.5em;
+}
+
+.emoticon-image {
+  width: 24px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.draggable {
+  cursor: move;
+}
+
+.project-item-icon {
+  max-width: 60px !important;
+  height: 60px !important;
+}
+
+.milestone-label {
+  line-height: 0;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+md-grid-list md-grid-tile figure {
+  -webkit-align-items: flex-start;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.status-bar-margin {
+  margin: 0 1.4em;
+}
+.status-bar-margin-inner {
+  margin: 0 0.2em;
+}
+
+.project-top-spacing {
+  margin-top: 1em;
+}
+
+.project-top-spacing-minus {
+  margin-top: -2em;
+}
+
+.btn-close-issue {
+  width: 90% !important;
+  text-align: center !important;
+}
+
+.cell-closed {
+  opacity: 0.3;
+}
+
+.sign-out-button {
+  cursor: pointer;
+  padding-top: 0.5em;
+  margin-right: 0.6em;
+  width: 1em;
+}
+
+.margin-zero {
+  margin: 0;
+}
+
+.top-margin {
+  margin-top: 0.5em;
+}
+
+/* Fix material subheader layout*/
+.md-subheader:not(.md-sticky-no-effect):after {
+  right: 0;
+}
+.md-subheader .md-subheader-inner {
+  padding: 0;
+}
+.md-subheader {
+  margin-right: 0;
+}
+.header-button {
+    z-index: 1;
+}

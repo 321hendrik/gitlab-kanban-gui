@@ -1,0 +1,49 @@
+<md-dialog aria-label="Issue #{{item.iid}}"  ng-cloak>
+  <form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Issue #{{item.iid}} </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <fa class="menu-icon" name="close" size="1"></fa>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <div class="md-dialog-content">
+      <h2>{{item.displayTitle}}</h2>
+      <div ng-if="item.description" btf-markdown="item.description" class="markdown-preview">
+      </div>
+      <div layout="row" layout-align="end start">
+        <md-button class="md-primary" aria-label="show issue in gitlab">
+          <a class="no-link-style" ng-href="{{project.web_url}}/issues/{{item.iid}}" target="about;blank">Open in Gitlab</a>
+        </md-button>
+      </div>
+      <div layout="row" layout-fill layout-align="space-between center">
+        <md-chips flex="100" ng-model="item.labels" readonly="true"></md-chips>
+      </div>
+      <div layout="row" class="top-margin" layout-fill layout-align="space-between start">
+        <div layout="column" layout-align="start start">
+          <h4 class="margin-zero">Author</h4>
+          <img class="project-icon top-margin" ng-src="{{item.author.avatar_url}}" alt="{{item.author.name}}">
+          <span>{{item.author.name}}</span>
+        </div>
+        <div layout="column" layout-align="start end">
+          <h4 class="margin-zero">Assignee</h4>
+          <img ng-show="item.assignee" class="project-icon top-margin" ng-src="{{item.assignee.avatar_url}}" alt="{{item.assignee.name}}">
+          <span>{{(item.assignee) ? item.assignee.name : 'None'}}</span>
+        </div>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row" ng-show="false">
+    <md-button ng-click="cancel()" aria-label="cancel dialog">
+      Cancel
+    </md-button>
+    <span flex></span>
+    <md-button class="md-primary" style="margin-right:20px;" aria-label="save and exit dialog">
+      Save
+    </md-button>
+  </div>
+  </form>
+</md-dialog>

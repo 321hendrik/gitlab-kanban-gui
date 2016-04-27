@@ -1,0 +1,90 @@
+<div ng-controller="IssueController">
+  <md-subheader>
+  <div layout="row" layout-align="space-between center" layout-padding class="page-margin">
+    <img ng-if="selected.avatar_url" class="project-icon big" ng-src="{{selected.avatar_url}}" alt="{{selected.name_with_namespace}}">
+    <div layout="row" layout-align="start start">
+      <h2>{{selected.name}}</h2>
+      &nbsp;&nbsp;
+      <h4>{{selected.description}}</h4>
+    </div>
+    <div layout="row" layout-align="end start">
+      <a class="no-link-style" ng-href="{{tardisUrl}}/#/timesheet/{{selected.id}}" target="about;blank" ng-show="tardisUrl">
+        <md-button class="md-primary header-button" aria-label="show project's timesheet">Open Timesheet</md-button>
+      </a>
+      <a class="no-link-style" ng-href="{{selected.web_url}}/issues" target="about;blank">
+        <md-button class="md-primary header-button" aria-label="show project in gitlab">Open in Gitlab</md-button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="kanban-grid-list page-margin" layout="row">
+    <md-list ng-repeat="column in models.lists" md-rowspan="1" md-colspan="2" md-colspan-sm="1" class="gray" layout="row" layout-padding layout-align="space-around center" style="border-bottom: solid {{column.color}};color: {{column.color}};">
+      <p class="md-subhead" dnd-nodrag>{{column.name}}</p>
+      <p ng-if="column.emoticonUrl" dnd-nodrag><img class="emoticon-image" ng-src="{{column.emoticonUrl}}"></p>
+    </md-list>
+  </div>
+  </md-subheader>
+
+  <div layout="column" ng-repeat="milestone in milestones" ng-hide="!showUnassigned && milestone.title == 'without_milestone'" class="page-margin">
+    <div layout="row" layout-align="space-between end">
+      <p class="md-title milestone-title">{{(milestone.title == 'without_milestone' ? 'Unassigned' : milestone.title)}}</p>
+      <div layout="row" layout-align="end start">
+        <a class="no-link-style" ng-href="{{tardisUrl}}/#/timesheet/{{selected.id}}/{{milestone.data.id}}" target="about;blank" ng-show="tardisUrl && (milestone.title != 'without_milestone')">
+          <md-button class="md-primary header-button" aria-label="show project's timesheet">Open Timesheet</md-button>
+        </a>
+        <a class="no-link-style" ng-href="{{selected.web_url}}/milestones/{{milestone.data.iid}}" target="about;blank" ng-show="milestone.title != 'without_milestone'">
+          <md-button class="md-primary header-button" aria-label="show project in gitlab">Open in Gitlab</md-button>
+        </a>
+      </div>
+    </div>
+    <div class="kanban-grid-list" layout="row">
+      <md-list
+          dnd-allowed-types="[milestone.title]"
+          ng-repeat="column in models.lists"
+          dnd-list="column.items"
+          dnd-drop="itemDrop(item, column, milestone);"
+          md-rowspan="3" md-colspan="2" md-colspan-sm="1"
+          class="gray min-height-200">
+        <md-list-item
+            ng-repeat="item in column.items | filter:searchText"
+            ng-if="(!item.milestone && milestone.title == 'without_milestone') || item.milestone.title == milestone.title"
+            dnd-draggable="item"
+            dnd-type="item.type"
+            dnd-dragstart="dragStart($index, column)"
+            dnd-effect-allowed="move"
+            dnd-disable-if="column.id == 'closed'"
+            >
+            <a target="about;blank" ng-href="{{selected.web_url}}/issues/{{item.iid}}" class="no-link-style cell {{(column.id == 'closed') ? 'cell-closed' : 'draggable'}}">
+              {{item.iid}}# <br />
+              <b>{{item.displayTitle}}</b>
+              <span ng-if="item.labels && item.labels.length">
+                <br /><br />
+                <span ng-repeat="label in item.labels" class="small-label">{{label}}</span>
+              </span>
+            </a>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+
+  <div layout="row" layout-align="center start" ng-hide="isLoadingDone">
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+  </div>
+
+  <br />
+  <div layout="row" layout-align="center start" ng-show="isLoadingDone">
+      <md-button class="md-raised" ng-click="showUnassigned = !showUnassigned" aria-label="show unassigned">{{ (showUnassigned) ? 'Hide' : 'Show'}} Unassigned Issues</md-button>
+  </div>
+
+  <div class="lock-size" layout="row" layout-align="end end">
+    <md-fab-trigger>
+    <a class="no-link-style" ng-href="{{selected.web_url}}/issues/new?issue%5Bassignee_id%5D=&issue%5Bmilestone_id%5D=" target="about;blank">
+      <md-button aria-label="create issue" class="md-fab md-warn">
+        <md-tooltip md-direction="left" md-visible="tooltipVisible">Create new Issue</md-tooltip>
+        <fa name="plus" size="1"></fa>
+      </md-button>
+    </a>
+    </md-fab-trigger>
+  </div>
+</div>

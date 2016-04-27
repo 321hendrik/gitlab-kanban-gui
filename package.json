@@ -1,0 +1,17 @@
+{
+  "name": "gitlab-kanban-frontend",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Gitlab based Kanban Board Frontend",
+  "repository": "https://gitlab.xmini.org/hpm/kanban-frontend",
+  "license": "",
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "bower": "^1.3.1",
+    "shelljs": "^0.2.6"
+  },
+  "scripts": {
+    "postinstall": "bower update",
+    "prestart": "npm update"
+  }
+}

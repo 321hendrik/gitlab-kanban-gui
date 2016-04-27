@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="kanban">
+  <head>
+    <title>Gitlab Kanban</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='assets/font.css'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./bower_components/angular-emoji-filter/dist/emoji.min.css">
+    <link rel="stylesheet" href="./assets/pace.css">
+  </head>
+  <body ng-app="kanban" layout="column" ng-controller="AppController">
+
+    <md-toolbar class="md-whiteframe-z2" layout="row" layout-align="space-between center">
+      <a href ui-sref='dashboard' ui-sref-opts="{reload: true}" layout="row" layout-align="space-between center" class="no-link-style">
+        <img class="site-logo-img" src="assets/img/kanban-logo.png" height="128" width="128" alt="Gitlab Kanban Logo">
+        <h1 class="site-logo">Gitlab Kanban</h1>
+      </a>
+      <div layout="row" layout-align="left center" ng-show="getUser().name">
+          <md-input-container class="searchbar-container" ng-init="searchfocused = false" ng-class="{'md-whiteframe-z3': searchfocused}" layout="row" layout-padding layout-align="space-between center">
+            <fa flex flex-order="1" class="menu-icon" name="search" size="1"></fa>
+            <input class="searchbar input" name="search" ng-model="searchText" aria-label="search" ng-focus="searchfocused = true" ng-blur="searchfocused = false">
+            <fa flex flex-order="3" ng-show="searchText" ng-click="searchText = ''" name="close" size="1"></fa>
+          </md-input-container>
+          <img class="avatar-img" ng-src="{{getUser().avatar}}" height="128" width="128" alt="Gitlab Kanban Logo">
+          <fa class="sign-out-button" aria-label="remove token" ng-show="!missingToken" ng-click="removeToken()" ng-click="" name="sign-out" size="1"></fa>
+      </div>
+    </md-toolbar>
+
+    <div flex layout="row">
+        <md-content flex id="content" role="main" data-ui-view></md-content>
+    </div>
+
+    <!-- External Modules -->
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-fontawesome/dist/angular-fontawesome.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="./bower_components/showdown/src/showdown.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-markdown-directive/markdown.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-emoji-filter/dist/emoji.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="./assets/js/pace.min.js"></script>
+
+    <!-- App init -->
+    <script type="text/javascript" src="./src/app.js"></script>
+
+    <!-- App Modules -->
+    <script type="text/javascript" src="./assets/js/kanbanClient.js"></script>
+    <script type="text/javascript" src="./src/app/kanban.config.js"></script>
+    <script type="text/javascript" src="./src/app/backendService.js"></script>
+    <script type="text/javascript" src="./src/app/AppController.js"></script>
+    <script type="text/javascript" src="./src/issue/IssueController.js"></script>
+    <script type="text/javascript" src="./src/project/ProjectController.js"></script>
+    <script type="text/javascript" src="./src/auth/AuthController.js"></script>
+
+  </body>
+</html>

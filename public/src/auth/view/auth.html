@@ -1,0 +1,13 @@
+<div ng-controller="AuthController">
+  <form name="enterTokenForm" ng-submit="submitToken(enteredToken)" layout="column" layout-padding layout-align="center center" style="height: 50vh;padding: 24px;opacity: {{(missingToken) ? 1 : 0}};" class="hidden">
+    <md-input-container class="md-title">
+      <p>Please enter your <a href="{{gitlabUrl}}/profile/account" target="about;blank">Gitlab private token.</a></p>
+      <label>Private Token...</label>
+      <input name="tokenInput" class="md-headline" ng-model="enteredToken" type="text">
+      <div ng-messages="">
+        <div ng-message="" ng-show="enterTokenError">{{enterTokenError}}</div>
+      </div>
+    </md-input-container>
+    <md-button class="md-raised md-primary">Go</md-button>
+  </form>
+</div>
