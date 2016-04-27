@@ -5,7 +5,7 @@ Gitlab based Kanban Board Frontend
 * AngularJS Based
 * Style with [AngularMaterial](https://material.angularjs.org/latest/)
 * Enter api token to auth (save with local storage)
-* Use hpm/kanban-backend
+* Use with [Gitlab-Kanban-Server](https://github.com/hendrikelsner/gitlab-kanban-server)
 * Set issue & milestone state with [gitlab emoticons](http://emoji.codes/) :bug:
 
 | Row              | Icon                    | Icon-Code                 |
